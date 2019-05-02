@@ -14,7 +14,7 @@
 
         <div class="navbar-end">
             @if(auth()->check())
-                <a href="#" class="navbar-item ">
+                <a href="{{ route('account.index') }}" class="navbar-item ">
                     Your account
                 </a>
 
