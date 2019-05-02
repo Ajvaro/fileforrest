@@ -53,8 +53,8 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="424">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#23#63#0#PHP" expanded="true" />
               </folding>
@@ -68,6 +68,9 @@
     <findStrings>
       <find>model</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -189,6 +192,7 @@
     <option name="width" value="1551" />
     <option name="height" value="848" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -258,20 +262,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556787293963</updated>
-      <workItem from="1556787295829" duration="1529000" />
+      <workItem from="1556787295829" duration="1951000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1529000" />
+    <option name="totallyTimeSpent" value="1951000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="4" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
       <window_info anchor="bottom" id="Run" order="7" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.32905984" />
@@ -344,8 +349,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="424">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="e#23#63#0#PHP" expanded="true" />
           </folding>
