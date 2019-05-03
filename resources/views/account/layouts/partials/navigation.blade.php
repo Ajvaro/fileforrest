@@ -2,10 +2,10 @@
     <p class="menu-label">Files</p>
     <ul class="menu-list">
         <li>
-            <a href="#">Your files</a>
+            <a href="{{ route('account.files.index') }}">Your files</a>
         </li>
         <li>
-            <a href="#">Sell file</a>
+            <a href="{{ route('account.files.create.start') }}">Sell file</a>
         </li>
     </ul>
     <p class="menu-label">General</p>

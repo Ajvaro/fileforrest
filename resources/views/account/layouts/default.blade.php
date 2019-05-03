@@ -11,6 +11,7 @@
                     @include('account.layouts.partials.navigation')
                 </div>
                 <div class="column">
+                    @include('layouts.partials.flash')
                     @yield('account.content')
                 </div>
             </div>

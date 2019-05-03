@@ -69,6 +69,8 @@ return [
 
     'timezone' => 'UTC',
 
+    'currency' => 'GBP',
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
