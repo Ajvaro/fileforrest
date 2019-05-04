@@ -6,6 +6,6 @@
 -----
 
 # Fileforrest
-File marketplace built with Laravel and React. 
+File marketplace built with Laravel and Vue. 
 
 ---
