@@ -27,7 +27,7 @@
                         <span class="tag is-danger">Not live</span>
                     @endif
                 </p>
-                <a href="#" class="level-item"><i class="fa fa-edit"> </i> Make changes</a>
+                <a href="{{ route('account.files.edit', $file) }}" class="level-item"><i class="fa fa-edit"> </i> Make changes</a>
             </div>
             <div class="level-right">
                 <small class="level-item">Last modified: {{ $file->updated_at->diffForHumans() }}</small>

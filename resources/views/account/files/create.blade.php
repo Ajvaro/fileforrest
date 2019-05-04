@@ -11,28 +11,23 @@
                 <div class="field">
                     <label for="title" class="label">Title</label>
                     <div class="control">
-                        <input type="text" name="title" id="title" class="input{{ $errors->has('title') ? ' is-danger' : '' }}">
+                        <input type="text" name="title" id="title" class="input{{ $errors->has('title') ? ' is-danger' : '' }}" value="{{ old('title') }}">
                         @include('layouts.components.form_error', ['field' => 'title'])
                     </div>
                 </div>
             </div>
             <div class="column">
-                <div class="field">
-                    <label for="price" class="label">Price (&#163;)</label>
-                    <div class="control">
-                        <input type="number" name="price" step="any" min="0" id="price"
-                               onblur="validate(this)"
-                               class="input{{ $errors->has('price') ? ' is-danger' : '' }}">
-                        @include('layouts.components.form_error', ['field' => 'price'])
-                    </div>
-                </div>
+                <file-price
+                        :initial_price="{{ json_encode(old('price')) }}"
+                        :input_error="{{ json_encode($errors->first('price') ?? false) }}">
+                </file-price>
             </div>
         </div>
 
         <div class="field">
             <label for="overview_short" class="label">Short overview</label>
             <div class="control">
-                <input type="text" name="overview_short" id="overview_short" class="input{{ $errors->has('overview_short') ? ' is-danger' : '' }}">
+                <input type="text" name="overview_short" id="overview_short" class="input{{ $errors->has('overview_short') ? ' is-danger' : '' }}" value="{{ old('overview_short') }}">
                 @include('layouts.components.form_error', ['field' => 'overview_short'])
             </div>
         </div>
@@ -40,7 +35,7 @@
         <div class="field">
             <label for="overview" class="label">Overview</label>
             <div class="control">
-                <textarea name="overview" id="overview" class="textarea{{ $errors->has('overview') ? ' is-danger' : '' }}" rows="5"></textarea>
+                <textarea name="overview" id="overview" class="textarea{{ $errors->has('overview') ? ' is-danger' : '' }}" rows="5">{{ old('overview') }}</textarea>
                 @include('layouts.components.form_error', ['field' => 'overview'])
             </div>
         </div>
@@ -57,11 +52,4 @@
             </div>
         </div>
     </form>
-
-    <script>
-        function validate(el) {
-            let v = parseFloat(el.value);
-            el.value = (isNaN(v)) ? '' : v.toFixed(2);
-        }
-    </script>
 @endsection

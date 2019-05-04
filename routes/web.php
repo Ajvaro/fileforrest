@@ -10,7 +10,9 @@ Route::group(['prefix' => '/account', 'middleware' => ['auth'], 'namespace' => '
     Route::group(['prefix' => '/files'], function () {
         Route::get('/', 'FileController@index')->name('account.files.index');
         Route::get('/create', 'FileController@create')->name('account.files.create.start');
-        Route::post('/{file}', 'FileController@store')->name('account.files.store');
         Route::get('/{file}/create', 'FileController@create')->name('account.files.create');
+        Route::get('/{file}/edit', 'FileController@edit')->name('account.files.edit');
+        Route::post('/{file}', 'FileController@store')->name('account.files.store');
+        Route::patch('/{file}', 'FileController@update')->name('account.files.update');
     });
 });

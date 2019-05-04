@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\File;
+use App\Models\FileApproval;
+use App\Observers\FileApprovalObserver;
 use App\Observers\FileObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         File::observe(FileObserver::class);
+        FileApproval::observe(FileApprovalObserver::class);
     }
 }

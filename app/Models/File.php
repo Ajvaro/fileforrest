@@ -5,10 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 
 class File extends Model
 {
     use SoftDeletes;
+
+    const APPROVAL_PROPERTIES = [
+        'title',
+        'overview_short',
+        'overview'
+    ];
 
     protected $fillable = [
         'title',
@@ -31,6 +38,11 @@ class File extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function approvals()
+    {
+        return $this->hasMany(FileApproval::class);
+    }
+
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = $value * 100;
@@ -41,8 +53,19 @@ class File extends Model
         return $builder->where('finished', true);
     }
 
-    public function isFree()
+    public function isFree(): bool
     {
         return $this->price === 0;
+    }
+
+
+    public function needsApproval(array $approvalProps): bool
+    {
+        return Arr::only($this->toArray(), self::APPROVAL_PROPERTIES) != $approvalProps;
+    }
+
+    public function createApproval(array $approvalProps)
+    {
+        $this->approvals()->create($approvalProps);
     }
 }
