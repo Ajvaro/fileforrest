@@ -7,12 +7,17 @@
     <div class="field">
         <label class="label">Upload files</label>
         <div class="control">
-            <dropzone :uuid="{{ json_encode($file->identifier) }}" :uploads="{{ json_encode($file->uploads) }}"> </dropzone>
+            <dropzone
+                    :uuid="{{ json_encode($file->identifier) }}"
+                    :uploads="{{ json_encode($file->uploads) }}"
+                    :error="{{ json_encode($errors->first('uploads') ?? false) }}"
+            > </dropzone>
         </div>
     </div>
 
     <form action="{{ route('account.files.store', $file) }}" method="POST">
         @csrf
+        <input type="hidden" name="uploads" value="{{ $file->id }}">
         <div class="columns">
             <div class="column is-three-quarters">
                 <div class="field">

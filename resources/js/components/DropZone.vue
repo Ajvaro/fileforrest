@@ -1,10 +1,14 @@
 <template>
-    <vue-dropzone ref="myVueDropzone"
-                  id="dropzone"
-                  :options="dropzoneOptions"
-                  v-on:vdropzone-removed-file="removeFile"
-                  v-on:vdropzone-success="attachId"
-    ></vue-dropzone>
+    <div>
+        <vue-dropzone ref="myVueDropzone"
+                      id="dropzone"
+                      :options="dropzoneOptions"
+                      v-on:vdropzone-removed-file="removeFile"
+                      v-on:vdropzone-success="attachId"
+                      :class="this.error ? 'dz-error' : '' "
+        ></vue-dropzone>
+        <p class="help is-danger" v-if="this.error">{{ this.error }}</p>
+    </div>
 </template>
 
 <script>
@@ -13,7 +17,7 @@
     import axios from 'axios'
 
     export default {
-        props: ['uuid', 'uploads'],
+        props: ['uuid', 'uploads', 'error'],
         components: {
             vueDropzone: vue2Dropzone
         },
@@ -28,6 +32,7 @@
                         "X-CSRF-TOKEN": document.head.querySelector("[name=csrf-token]").content
                     }
                 },
+                validationError: this.error
             }
         },
         methods: {
@@ -62,3 +67,9 @@
         }
     }
 </script>
+
+<style>
+    .dz-error {
+        border: 1px solid red;
+    }
+</style>
