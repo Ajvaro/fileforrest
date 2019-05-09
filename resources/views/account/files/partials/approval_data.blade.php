@@ -4,9 +4,11 @@
         <br>
         <ul>
             @foreach($approval->approvalFields() as $field => $value)
+                @if($file->$field != $value)
                 <strong>{{ str_replace('_', ' ', ucfirst($field)) }}</strong>
                 <p>{{ $value }}</p>
                 <br>
+                @endif
             @endforeach
         </ul>
     </div>

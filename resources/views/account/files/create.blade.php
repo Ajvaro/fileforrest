@@ -4,6 +4,13 @@
 
     <h1 class="title">Sell a file</h1>
 
+    <div class="field">
+        <label class="label">Upload files</label>
+        <div class="control">
+            <dropzone :uuid="{{ json_encode($file->identifier) }}" :uploads="{{ json_encode($file->uploads) }}"> </dropzone>
+        </div>
+    </div>
+
     <form action="{{ route('account.files.store', $file) }}" method="POST">
         @csrf
         <div class="columns">

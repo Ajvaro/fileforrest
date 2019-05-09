@@ -68,4 +68,9 @@ class File extends Model
     {
         $this->approvals()->create($approvalProps);
     }
+
+    public function uploads()
+    {
+        return $this->hasMany(Upload::class);
+    }
 }

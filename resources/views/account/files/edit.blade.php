@@ -5,7 +5,7 @@
     <h1 class="title">Make changes</h1>
 
     @if($approval)
-      @include('account.files.partials.approval_data', compact('approval'))
+      @include('account.files.partials.approval_data', compact('approval', 'file'))
     @endif
 
     <form action="{{ route('account.files.update', $file) }}" method="POST">
