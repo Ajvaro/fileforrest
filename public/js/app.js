@@ -1808,12 +1808,12 @@ __webpack_require__.r(__webpack_exports__);
     removeFile: function removeFile(file) {
       var _this = this;
 
-      return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("http://fileforrest.local/".concat(this.uuid, "/files/").concat(file.id))["catch"](function () {
-        _this.$refs.myVueDropzone.manuallyAddFile({
-          id: file.id,
-          name: file.name,
-          size: file.size
-        });
+      return axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("http://fileforrest.local/".concat(this.uuid, "/files/").concat(file.id))["catch"](function (err) {
+        if (err.response.data.error) {
+          _this.validationError = err.response.data.message;
+        }
+
+        _this.addFile(file);
       });
     },
     attachId: function attachId(file, response) {
@@ -1829,6 +1829,13 @@ __webpack_require__.r(__webpack_exports__);
           id: file.id
         }, "");
       });
+    },
+    addFile: function addFile(file) {
+      this.$refs.myVueDropzone.manuallyAddFile({
+        id: file.id,
+        name: file.name,
+        size: file.size
+      }, "");
     }
   },
   mounted: function mounted() {
@@ -20176,7 +20183,7 @@ var render = function() {
     [
       _c("vue-dropzone", {
         ref: "myVueDropzone",
-        class: this.error ? "dz-error" : "",
+        class: _vm.validationError ? "dz-error" : "",
         attrs: { id: "dropzone", options: _vm.dropzoneOptions },
         on: {
           "vdropzone-removed-file": _vm.removeFile,
@@ -20184,9 +20191,9 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      this.error
+      _vm.validationError
         ? _c("p", { staticClass: "help is-danger" }, [
-            _vm._v(_vm._s(this.error))
+            _vm._v(_vm._s(_vm.validationError))
           ])
         : _vm._e()
     ],

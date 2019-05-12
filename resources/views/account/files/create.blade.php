@@ -17,7 +17,6 @@
 
     <form action="{{ route('account.files.store', $file) }}" method="POST">
         @csrf
-        <input type="hidden" name="uploads" value="{{ $file->id }}">
         <div class="columns">
             <div class="column is-three-quarters">
                 <div class="field">

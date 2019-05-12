@@ -58,6 +58,13 @@ class UploadController extends Controller
         $this->authorize('touch', $file);
         $this->authorize('touch', $upload);
 
+        if($file->uploads->count() == 1) {
+            return response()->json([
+               'error' => true,
+               'message' => 'You need to leave at least one uploaded file.'
+            ], 422);
+        }
+
         $upload->delete($upload);
 
         return response()->json([], 201);

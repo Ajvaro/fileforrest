@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasApproval;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +10,7 @@ use Illuminate\Support\Arr;
 
 class File extends Model
 {
-    use SoftDeletes;
+    use HasApproval, SoftDeletes;
 
     const APPROVAL_PROPERTIES = [
         'title',
@@ -61,7 +62,11 @@ class File extends Model
 
     public function needsApproval(array $approvalProps): bool
     {
-        return Arr::only($this->toArray(), self::APPROVAL_PROPERTIES) != $approvalProps;
+        return (
+            Arr::only($this->toArray(), self::APPROVAL_PROPERTIES) != $approvalProps
+            || $this->uploads()->unapproved()->count()
+        );
+
     }
 
     public function createApproval(array $approvalProps)

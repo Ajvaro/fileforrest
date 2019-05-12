@@ -8,6 +8,17 @@
       @include('account.files.partials.approval_data', compact('approval', 'file'))
     @endif
 
+    <div class="field">
+        <label class="label">Upload files</label>
+        <div class="control">
+            <dropzone
+                    :uuid="{{ json_encode($file->identifier) }}"
+                    :uploads="{{ json_encode($file->uploads) }}"
+                    :error="{{ json_encode($errors->first('uploads') ?? false) }}"
+            > </dropzone>
+        </div>
+    </div>
+
     <form action="{{ route('account.files.update', $file) }}" method="POST">
         @csrf
         @method('PATCH')

@@ -5,9 +5,9 @@
                       :options="dropzoneOptions"
                       v-on:vdropzone-removed-file="removeFile"
                       v-on:vdropzone-success="attachId"
-                      :class="this.error ? 'dz-error' : '' "
+                      :class="validationError ? 'dz-error' : '' "
         ></vue-dropzone>
-        <p class="help is-danger" v-if="this.error">{{ this.error }}</p>
+        <p class="help is-danger" v-if="validationError">{{ validationError }}</p>
     </div>
 </template>
 
@@ -38,12 +38,11 @@
         methods: {
             removeFile(file) {
                 return axios.delete(`http://fileforrest.local/${this.uuid}/files/${file.id}`)
-                    .catch(() => {
-                        this.$refs.myVueDropzone.manuallyAddFile({
-                            id: file.id,
-                            name: file.name,
-                            size: file.size
-                        })
+                    .catch((err) => {
+                        if (err.response.data.error) {
+                            this.validationError = err.response.data.message
+                        }
+                        this.addFile(file);
                     });
             },
 
@@ -59,8 +58,17 @@
                         id: file.id
                     }, "");
                 });
+            },
+
+            addFile(file) {
+                this.$refs.myVueDropzone.manuallyAddFile({
+                    id: file.id,
+                    name: file.name,
+                    size: file.size
+                },"")
             }
         },
+
 
         mounted() {
             this.populateDropzone(this.uploads);
